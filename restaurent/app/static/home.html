@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahi Darbaar - Authentic Indian Cuisine</title>
+    <style>
+        
+        :root {
+            --turmeric: #e6b325;      
+            --paprika: #a83232;       
+            --cardamom: #536455;      
+            --cinnamon: #8b4513;      
+            --cream: #f8f0e3;        
+            --black-pepper: #2a2a2a;  
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--black-pepper);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--cream);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            color: var(--cardamom);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--black-pepper);
+            padding: 15px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--turmeric);
+        }
+
+        /* Hero Banner */
+        .hero {
+            color: white;
+            text-align: left;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--turmeric);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 50px 0;
+        }
+
+        .feature-box {
+            flex-basis: 30%;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+
+        .feature-content h3 {
+            color: var(--paprika);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-content p {
+            margin-bottom: 15px;
+            color: var(--black-pepper);
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            margin-bottom: 5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--paprika);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--cinnamon);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cardamom);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-small {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            height: 2px;
+            background-color: var(--turmeric);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo">
+                <h1>SHAHI DARBAAR</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="administration.html">Administration</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <img src="\static\background.jpg" alt="Hero Background">
+            <div class="hero-content">
+                <h2>30% Off This Weekend</h2>
+                <p>Experience the royal flavors of India with our weekend special offer. Indulge in authentic dishes prepared with traditional spices and techniques handed down through generations. Our chefs create each dish with passion and precision to bring you the true taste of Indian royalty.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="features">
+                <div class="feature-box">
+                    <img src="\static\new_menu_items.jpg" alt="New Menu Items">
+                    <div class="feature-content">
+                        <h3>Our New Menu</h3>
+                        <p>Experience our newly curated menu featuring authentic dishes from across the Indian subcontinent. Every dish is carefully prepared using traditional methods and the finest spices to bring you the royal flavors of India.</p>
+                        <a href="menu.html" class="cta-button">See our new menu</a>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <img src="\static\book_table.jpg" alt="Book a Table">
+                    <div class="feature-content">
+                        <h3>Book a table</h3>
+                        <p>Reserve your royal dining experience at Shahi Darbaar. Our elegant ambiance combined with exceptional service ensures a memorable meal for you and your loved ones. Book in advance to secure your preferred time and seating.</p>
+                        <a href="contact-us.html" class="cta-button">Book your table now</a>
+
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <img src="\static\opening_hour.jpg" alt="Opening Hours">
+                    <div class="feature-content">
+                        <h3>Opening Hours</h3>
+                        <p>We welcome you to experience our royal hospitality during these hours:</p>
+                        <ul class="hours-list">
+                            <li>Mon - Sun: 9am - 8pm</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo" class="logo-small">
+            <p>Designed and Developed by A S Siddarth (2122204040316)</p>
+        </div>
+    </footer>
+</body>
+</html>

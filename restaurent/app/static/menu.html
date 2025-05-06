@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Shahi Darbaar</title>
+    <style>
+        
+        :root {
+            --turmeric: #e6b325;      
+            --paprika: #a83232;       
+            --cardamom: #536455;      
+            --cinnamon: #8b4513;      
+            --cream: #f8f0e3;         
+            --black-pepper: #2a2a2a;  
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--black-pepper);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--cream);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            color: var(--cardamom);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--black-pepper);
+            padding: 15px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--turmeric);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: var(--paprika);
+        }
+
+        .page-title h2 {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--turmeric);
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+        }
+
+        /* Menu Categories */
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .category-btn {
+            background-color: var(--cardamom);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--paprika);
+        }
+
+        /* Menu Items */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .menu-item-title {
+            color: var(--cinnamon);
+            font-size: 1.3rem;
+        }
+
+        .menu-item-price {
+            color: var(--paprika);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .menu-item-desc {
+            color: var(--black-pepper);
+            margin-bottom: 15px;
+        }
+
+        .spice-level {
+            display: flex;
+            align-items: center;
+        }
+
+        .spice-level span {
+            margin-right: 5px;
+            color: var(--cinnamon);
+            font-weight: bold;
+        }
+
+        .spice-icon {
+            color: var(--paprika);
+            font-size: 1.2rem;
+            margin-right: 3px;
+        }
+
+        .dietary-info {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .dietary-tag {
+            background-color: var(--cardamom);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cardamom);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-small {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Hide filtered items */
+        .menu-item.hidden {
+            display: none;
+        }
+
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5rem;
+            color: var(--paprika);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo">
+                <h1>SHAHI DARBAAR</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="administration.html">Administration</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="page-title">
+                <h2>Our Royal Menu</h2>
+            </div>
+
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="appetizers">Appetizers</button>
+                <button class="category-btn" data-category="main-course">Main Course</button>
+                <button class="category-btn" data-category="breads">Breads</button>
+                <button class="category-btn" data-category="desserts">Desserts</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="no-results">No menu items found in this category.</div>
+
+                <!-- Menu Item 1 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\butter chicken.webp" alt="Butter Chicken">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Butter Chicken</h3>
+                            <div class="menu-item-price">₹469</div>
+                        </div>
+                        <p class="menu-item-desc">Tender chicken pieces marinated in yogurt and spices, cooked in a creamy tomato sauce with butter.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\chicken briyani.jpg" alt="Biryani">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chicken Biryani</h3>
+                            <div class="menu-item-price">₹370</div>
+                        </div>
+                        <p class="menu-item-desc">Fragrant basmati rice cooked with tender chicken pieces, saffron, and aromatic spices in the traditional dum style.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\palak-paneer.jpg" alt="Palak Paneer">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Palak Paneer</h3>
+                            <div class="menu-item-price">₹300</div>
+                        </div>
+                        <p class="menu-item-desc">Cubes of fresh cottage cheese cooked in a creamy spinach gravy flavored with cumin and garlic.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 4 -->
+                <div class="menu-item" data-category="appetizers">
+                    <img src="\static\chicken tikka.jpg" alt="Chicken Tikka">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chicken Tikka</h3>
+                            <div class="menu-item-price">₹190</div>
+                        </div>
+                        <p class="menu-item-desc">Boneless chicken chunks marinated in yogurt and spices, skewered and grilled in a tandoor oven.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 5 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\Amritsari-Chole-Bhature.jpg" alt="Chole Bhature">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Chole Bhature</h3>
+                            <div class="menu-item-price">₹225</div>
+                        </div>
+                        <p class="menu-item-desc">Spicy chickpea curry served with deep-fried leavened bread, a popular North Indian dish.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 6 -->
+                <div class="menu-item" data-category="breads">
+                    <img src="\static\garlic-naan.jpg" alt="Naan">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Garlic Naan</h3>
+                            <div class="menu-item-price">₹85</div>
+                        </div>
+                        <p class="menu-item-desc">Leavened flatbread topped with garlic, baked in a tandoor oven until golden and fluffy.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">-</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 7 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\Rogan-Josh.jpg" alt="Rogan Josh">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Rogan Ghosht</h3>
+                            <div class="menu-item-price">₹485</div>
+                        </div>
+                        <p class="menu-item-desc">Traditional Kashmiri lamb curry cooked with Kashmiri red chillies, aromatic spices, and yogurt.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 8 -->
+                <div class="menu-item" data-category="appetizers">
+                    <img src="\static\samosa 1.jpg" alt="Samosa">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Vegetable Samosa</h3>
+                            <div class="menu-item-price">₹40</div>
+                        </div>
+                        <p class="menu-item-desc">Crispy pastry filled with a spiced mixture of potatoes, peas, and herbs, deep-fried to perfection.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 9 -->
+                <div class="menu-item" data-category="desserts">
+                    <img src="\static\gulab-jamun.jpeg" alt="Gulab Jamun">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Gulab Jamun</h3>
+                            <div class="menu-item-price">₹50</div>
+                        </div>
+                        <p class="menu-item-desc">Soft, spongy milk solids dumplings soaked in rose and cardamom flavored sugar syrup.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">-</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 10 -->
+                <div class="menu-item" data-category="main-course">
+                    <img src="\static\Best-Malai-Kofta.jpg" alt="Malai Kofta">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Malai Kofta</h3>
+                            <div class="menu-item-price">₹390</div>
+                        </div>
+                        <p class="menu-item-desc">Soft cottage cheese and vegetable dumplings in a rich, creamy tomato gravy with cashews and spices.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 11 -->
+                <div class="menu-item" data-category="appetizers">
+                    <img src="\static\tandori chicken.jpg" alt="Tandoori Chicken">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Tandoori Chicken</h3>
+                            <div class="menu-item-price">₹785</div>
+                        </div>
+                        <p class="menu-item-desc">Chicken marinated in yogurt and spices, grilled in a tandoor oven until charred and juicy.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">🌶️</span>
+                            <span class="spice-icon">🌶️</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 12 -->
+                <div class="menu-item" data-category="desserts">
+                    <img src="\static\rasmalai.jpg" alt="Rasmalai">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Rasmalai</h3>
+                            <div class="menu-item-price">₹200</div>
+                        </div>
+                        <p class="menu-item-desc">Soft cottage cheese dumplings soaked in sweetened, thickened milk flavored with cardamom and saffron.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">-</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                            <div class="dietary-tag">Gluten-Free</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Amritsari Kulcha -->
+                <div class="menu-item" data-category="breads">
+                    <img src="\static\amritsar kulcha.jpg" alt="Amritsari Kulcha">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Amritsari Kulcha</h3>
+                            <div class="menu-item-price">₹215</div>
+                        </div>
+                        <p class="menu-item-desc">Stuffed bread with spiced mashed potatoes, onions, and herbs, cooked in a tandoor and brushed with butter.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">-</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gobi Paratha -->
+                <div class="menu-item" data-category="breads">
+                    <img src="\static\gobi-paratha.jpg" alt="Gobi Paratha">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">Gobi Paratha</h3>
+                            <div class="menu-item-price">₹129</div>
+                        </div>
+                        <p class="menu-item-desc">Whole wheat flatbread stuffed with spiced grated cauliflower, cooked on a griddle with ghee or butter.</p>
+                        <div class="spice-level">
+                            <span>Spice Level:</span>
+                            <span class="spice-icon">-</span>
+                        </div>
+                        <div class="dietary-info">
+                            <div class="dietary-tag">Vegetarian</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo" class="logo-small">
+            <p>Designed and Developed by A S Siddarth (212224040316)</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all category buttons and menu items
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const noResultsMessage = document.querySelector('.no-results');
+
+            // Add click event to each category button
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the category from data attribute
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter menu items
+                    filterMenuItems(category);
+                });
+            });
+
+            // Function to filter menu items based on category
+            function filterMenuItems(category) {
+                let visibleCount = 0;
+                
+                menuItems.forEach(item => {
+                    // Get the category of the item
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    // Show all items if 'all' is selected or show only items matching the selected category
+                    if (category === 'all' || itemCategory === category) {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                
+                if (visibleCount === 0) {
+                    noResultsMessage.style.display = 'block';
+                } else {
+                    noResultsMessage.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

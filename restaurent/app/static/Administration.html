@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Shahi Darbaar</title>
+    <style>
+       
+        :root {
+            --turmeric: #e6b325;      
+            --paprika: #a83232;       
+            --cardamom: #536455;      
+            --cinnamon: #8b4513;     
+            --cream: #f8f0e3;         
+            --black-pepper: #2a2a2a;  
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--black-pepper);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--cream);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            color: var(--cardamom);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--black-pepper);
+            padding: 15px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--turmeric);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: var(--paprika);
+        }
+
+        .page-title h2 {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--turmeric);
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+        }
+
+        /* Team Section */
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--cardamom);
+            font-size: 1.1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-member-content {
+            padding: 20px;
+        }
+
+        .team-member-name {
+            color: var(--cinnamon);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member-title {
+            color: var(--paprika);
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .team-member-bio {
+            color: var(--black-pepper);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-link {
+            color: var(--cardamom);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--paprika);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background-color: var(--cardamom);
+            color: white;
+            padding: 60px 0;
+            margin: 30px 0;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--turmeric);
+        }
+
+        .mission-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cardamom);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-small {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo">
+                <h1>SHAHI DARBAAR</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="administration.html">Administration</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="page-title">
+                <h2>Our Royal Team</h2>
+            </div>
+
+            <div class="team-intro">
+                <p>At Shahi Darbaar, our team of culinary experts and hospitality professionals work diligently to bring you the authentic taste of royal Indian cuisine. Each member brings their passion and expertise to create an unforgettable dining experience.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <img src="\static\Rajesh Kumar.jpg" alt="Rajesh Kumar">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Rajesh Kumar</h3>
+                        <div class="team-member-title">Executive Chef</div>
+                        <p class="team-member-bio">With over 20 years of experience in royal Indian kitchens, Chef Rajesh brings authentic flavors and traditional cooking techniques to Shahi Darbaar. His expertise in spice blending and tandoor cooking has earned him numerous culinary awards.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <img src="\static\priya singh.jpg" alt="Priya Singh">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Priya Singh</h3>
+                        <div class="team-member-title">Restaurant Manager</div>
+                        <p class="team-member-bio">Priya ensures that every guest receives royal treatment at Shahi Darbaar. Her background in luxury hospitality and attention to detail creates a seamless dining experience from reservation to farewell.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <img src="\static\vikram joshi.jpg" alt="Vikram Joshi">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Vikram Joshi</h3>
+                        <div class="team-member-title">Pastry Chef</div>
+                        <p class="team-member-bio">Specializing in traditional Indian sweets with a modern twist, Chef Vikram's desserts are the perfect ending to your royal feast. His unique creations blend authentic flavors with artistic presentation.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <img src="\static\ananya desai.jpg" alt="Ananya Desai">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Ananya Desai</h3>
+                        <div class="team-member-title">Marketing Director</div>
+                        <p class="team-member-bio">Ananya brings Shahi Darbaar's royal experience to the digital world. Her creative campaigns and community engagement initiatives have made our restaurant a beloved culinary destination.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-member">
+                    <img src="\static\arjun sharma.jpg" alt="Arjun Sharma">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Arjun Sharma</h3>
+                        <div class="team-member-title">Head Tandoor Chef</div>
+                        <p class="team-member-bio">Master of the tandoor oven, Chef Arjun creates perfectly charred breads and succulent kebabs. His precision and timing bring out the authentic smoky flavors that define north Indian cuisine.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-member">
+                    <img src="\static\meera kapoor.jpg" alt="Meera Kapoor">
+                    <div class="team-member-content">
+                        <h3 class="team-member-name">Meera Kapoor</h3>
+                        <div class="team-member-title">Events Coordinator</div>
+                        <p class="team-member-bio">From intimate family celebrations to grand corporate events, Meera ensures every special occasion at Shahi Darbaar exceeds expectations with her meticulous planning and creative touches.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-section">
+            <div class="mission-content">
+                <h3>Our Royal Mission</h3>
+                <p>At Shahi Darbaar, we are committed to preserving and sharing the rich culinary heritage of royal Indian kitchens. Our mission is to transport our guests to the grand courts of Indian royalty through authentic flavors, elegant ambiance, and exceptional service.</p>
+                <p>We source the finest ingredients, use traditional cooking methods, and honor time-tested recipes while incorporating contemporary sensibilities to create a dining experience that is both authentic and accessible.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="\static\restaurent_logo.jpg" alt="Shahi Darbaar Logo" class="logo-small">
+            <p>Designed and Developed by A S Siddarth (212224040316)</p>
+        </div>
+    </footer>
+</body>
+</html>
